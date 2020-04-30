@@ -36,3 +36,29 @@
     transform: rotate(360deg);
   }
 }
+
+.bg {
+  background-color: #0a6298;
+}
+
+.fontcolor {
+  color: #0078c0;
+}
+
+.button {
+  padding: 10px;
+  background: #0a6298;
+  border-radius: 5px;
+  color: #ffffff !important;
+}
+
+.formcontrol {
+  border: none;
+  border-bottom: 1px solid #0078c0;
+  opacity: 0.5;
+}
+
+.iconToggle {
+  border: none;
+  background-color: initial;
+}
