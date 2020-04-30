@@ -4,6 +4,7 @@ import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import Button from '../core/Button'
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -65,12 +66,7 @@ export default function Login() {
                     />
                   </div>
                   <div className="my-5">
-                    <button
-                      type="button"
-                      className="button col-12 font-weight-bold"
-                    >
-                      Login
-                    </button>
+                    <Button text="Login"/>
                   </div>
                 </div>
               </div>
