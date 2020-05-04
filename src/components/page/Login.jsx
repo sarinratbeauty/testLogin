@@ -4,7 +4,10 @@ import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import Button from '../core/Button'
+import Button from "../core/Button";
+import { apiAuth } from "../../api/auth";
+import qs from "qs";
+import { navigate } from "@reach/router";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -12,6 +15,27 @@ export default function Login() {
   const [hidden, setHidden] = useState(true);
 
   const handleHidden = () => setHidden(!hidden);
+
+  async function handleLogin() {
+    const temp = {
+      grant_type: "password",
+      username: username,
+      password: password,
+    };
+
+    try {
+      let res = await apiAuth(qs.stringify(temp));
+      if (res) {
+        localStorage.setItem("data", JSON.stringify(res.data));
+        alert("Please wait");
+        setTimeout(() => {
+          navigate("/homepage");
+        }, 2000);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <div className="bg">
@@ -33,7 +57,7 @@ export default function Login() {
                     </label>
                     <Input
                       placeholder="Username"
-                      type={hidden ? "password" : "text"}
+                      type="text"
                       className="formcontrol col-12"
                       onChange={(e) => setUsername(e.target.value)}
                     />
@@ -42,15 +66,14 @@ export default function Login() {
                     <label
                       for="password"
                       className="fontcolor font-weight-bold"
-                      onChange={(e) => setPassword(e.target.value)}
                     >
                       Password
                     </label>
-
                     <Input
                       placeholder="Password"
                       type={hidden ? "password" : "text"}
                       className="formcontrol col-12"
+                      onChange={(e) => setPassword(e.target.value)}
                       endAdornment={
                         <InputAdornment position="end">
                           {hidden ? (
@@ -66,7 +89,7 @@ export default function Login() {
                     />
                   </div>
                   <div className="my-5">
-                    <Button text="Login"/>
+                    <Button text="Login" onClick={() => handleLogin()} />
                   </div>
                 </div>
               </div>
