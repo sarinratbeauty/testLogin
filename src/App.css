@@ -39,6 +39,7 @@
 
 .bg {
   background-color: #0a6298;
+  min-height: 100vh;
 }
 
 .fontcolor {
